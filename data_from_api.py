@@ -8,15 +8,13 @@ def get_data(people_id):
   raw_data = response.json()
   return raw_data
 
-data = get_data(14018480)
+data = get_data(PID)
 
 person_name = data['data']['name']
 designation = data['data']['profile']['positions'][0]['title']
 company = data['data']['profile']['positions'][0]['company']['name']
 position_summary = data['data']['profile']['positions'][0]['summary']
-
-key_responsibilities = position_summary.split('Main responsibilities', 1)[1].split('The most relevant results', 1)[0].strip()
-key_achievements =  position_summary.split('The most relevant results', 1)[1]
+key_responsibilities, key_achievements = extract_responsibilities_and_achievements(position_summary)
 email =  data['data']['emails'][0]['address']
 phone_number =  data['data']['phones'][0]['number']
 try:
@@ -27,23 +25,16 @@ except:
 start_date = data['data']['profile']['positions'][0]['startDate']
 end_date = data['data']['profile']['positions'][0]['endDate']
 current_date = str(datetime.now().date())
-
 start_date_dt = datetime.strptime(start_date, "%Y-%m-%d")
 current_date_dt = datetime.strptime(current_date, "%Y-%m-%d")
 delta = relativedelta.relativedelta(current_date_dt, start_date_dt)
-
 exp_years = delta.years
 exp_months = delta.months
-
-summary = data['data']['summary']
-
+summary = data['data']['summary'][1]
 dob = 'not given'
 nationality = 'not given'
 education = 'need to discuss'
 language= 'not given'
-email = data['data']['emails'][0]['address']
-phone = data['data']['phones'][0]['number']
-
 ctc = 'not given'
 pref_loc = 'not given'
 add_edu = 'not given'
