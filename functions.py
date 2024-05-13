@@ -4,7 +4,8 @@ from docx.enum.text import WD_ALIGN_PARAGRAPH, WD_PARAGRAPH_ALIGNMENT
 from docx.enum.table import WD_TABLE_ALIGNMENT
 from docx.shared import Cm
 import re
-
+import warnings
+warnings.filterwarnings("ignore")
 def new_paragraph(obj,text,text_size=12,boolean_bold=False,boolean_italic=False,font_name ='Calibri',alignment = WD_ALIGN_PARAGRAPH.LEFT,r=0,g=0,b=0):
      text_para = obj.add_paragraph()
      run = text_para.add_run(text)
