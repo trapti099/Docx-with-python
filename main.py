@@ -12,7 +12,7 @@ profile_text_paragraph = doc.add_paragraph()
 run = profile_text_paragraph.add_run()
 inline_shape = run.add_picture(profile_img_path,width=Cm(4.61),height = Cm(4.61)) # Add profile photo
 new_paragraph(obj=doc,text=f"{person_name}\n",boolean_bold=True,r=128,g=0,b=128)
-new_paragraph(obj=doc,text=f"{designation},\n{company}\n\n{summary}")
+new_paragraph(obj=doc,text=f"{designation},\n{company}\n\nLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.")
 
 # Add a new page
 doc.add_page_break()
@@ -45,9 +45,8 @@ new_paragraph(obj=doc,text="Educational Data:",text_size=12,boolean_bold=True,r=
 # Add a table with three columns
 table = doc.add_table(rows=0, cols=3)
 
-# Add rows for educational data
-add_educational_row(table, "1997", "Jamnalal Bajaj Institute of Management Studies, Mumbai", "Masters in Management Studies (Marketing)")
-add_educational_row(table, "1992", "Narsee Monjee College of Commerce, Mumbai", "Bachelor of Commerce (Financial Accounting)")
+add_educational_row(table, "1997(N/A)", "Lorem ipsum dolor sit amet, Mumbai(N/A)", "Lorem ipsum dolor sit amet(N/A)")
+add_educational_row(table, "1992(N/A)", "Lorem ipsum dolor sit amet, Mumbai(N/A)", "Lorem ipsum dolor sit amet(N/A)")
 for cell in table.columns[2].cells:
     cell.width = Cm(11.0)
 
@@ -75,8 +74,8 @@ table = doc.add_table(rows=0, cols=3)
 add_row(table, "Location Preference", ":", pref_loc)
 add_row(table, "CTC*", ":", ctc)
 add_row(table, "Contact Details", ":", f"{email}, {phone_number}")
-add_additional_row(table, "2019", ":","London Business School", "Leading for Results Program\nA Leadership Development Program focused on\n •  Strengthening market positions & accelerating growths\n •  Excelling in execution and creating a winning culture")
-add_additional_row(table, "1992-1994", ":", "Indo-German Training Centre, Mumbai", "Diploma in Business Administration\n •  Sponsored by Bayer (India) Ltd, with 2/3rds of training being on the job.\n •  Course under the aegis of Indo-German Chamber of Commerce.\n•  Training content developed by Deutscher Industrie – und Handelsta (Association of German Chambers of Industry & Commerce).")
+add_additional_row(table, "2019(N/A)", ":","Lorem ipsum dolor sit amet, Mumbai(N/A)", "Lorem ipsum dolor sit amet(N/A)\nLorem ipsum dolor sit amet(N/A)\n •  Lorem ipsum dolor sit amet(N/A)")
+add_additional_row(table, "1992-1994(N/A)", ":", "Lorem ipsum dolor sit amet, Mumbai(N/A)", "Lorem ipsum dolor sit amet\n •  Lorem ipsum dolor sit amet")
 for cell in table.columns[2].cells:
     cell.width = Cm(11.0)
 
@@ -85,3 +84,4 @@ doc.add_page_break()
 doc.add_picture(background_image_path, width=Cm(20),height = Cm(23.14))
 # Save the document
 doc.save("main.docx")
+print("Your document is saved with the name main.docx")
