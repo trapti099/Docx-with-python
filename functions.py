@@ -3,6 +3,7 @@ from docx.shared import Inches, Pt, RGBColor
 from docx.enum.text import WD_ALIGN_PARAGRAPH, WD_PARAGRAPH_ALIGNMENT
 from docx.enum.table import WD_TABLE_ALIGNMENT
 from docx.shared import Cm
+import re
 
 def new_paragraph(obj,text,text_size=12,boolean_bold=False,boolean_italic=False,font_name ='Calibri',alignment = WD_ALIGN_PARAGRAPH.LEFT,r=0,g=0,b=0):
      text_para = obj.add_paragraph()
@@ -82,3 +83,18 @@ def add_bullet_points(text,obj):
   points = [p.strip() for p in points if p.strip()]
   for point in points:
       obj.add_paragraph(point, style='ListBullet')
+
+def extract_responsibilities_and_achievements(text):
+    responsibilities_pattern = re.compile(r'Main responsibilities(.*?)The (three )?most relevant results', re.DOTALL)
+    achievements_pattern = re.compile(r'The (three )?most relevant results(.*?)$', re.DOTALL)
+    responsibilities_match = responsibilities_pattern.search(text)
+    if responsibilities_match:
+        key_responsibilities = responsibilities_match.group(1).strip()
+    else:
+        key_responsibilities = None
+    achievements_match = achievements_pattern.search(text)
+    if achievements_match:
+        key_achievements = achievements_match.group(2).strip()
+    else:
+        key_achievements = None
+    return key_responsibilities, key_achievements
